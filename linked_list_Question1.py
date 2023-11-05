@@ -66,7 +66,6 @@ class LinkedList:
             self.head = self.head.next
             return
         
-        ## (TO-DO - optimization) 
         else:
             itr = self.head
             while itr:
@@ -78,11 +77,13 @@ class LinkedList:
                     if itr.next.data == value:
                         isValuePresent = True
                         itr.next = None
+                    if isValuePresent == False:
+                        print(f'The value {value} you are trying to remove is not present')
                     return
                 
-        print(isValuePresent)
-        if isValuePresent == False:
-            print('The value you are trying to remove is not present')
+        # print(isValuePresent)
+        # if isValuePresent == False:
+        #     print('The value you are trying to remove is not present')
 
     def ll_length(self):
         itr = self.head
@@ -127,6 +128,7 @@ if __name__ == '__main__':
     # ll.remove_by_value(10)
     # ll.remove_by_value(455)
     ll.remove_by_value(700)
+    ll.remove_by_value(1111)
 
     ll.ll_length()
 
