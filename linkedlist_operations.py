@@ -56,7 +56,7 @@ class Linkedlist:
     def reverseLinkedList(self):
         # print('Reversed Linkedlist')
         prev = None
-        counter = 0 
+        counter = 0
         itr = self.head
         while itr:
             if counter == 0:
@@ -75,7 +75,47 @@ class Linkedlist:
             itr = temp_address
         
         return self
-        
+    
+    def reverseLinkedListv2(self, itr):
+        address = None
+        while itr:
+            data = itr.data
+            node = Node(data, address)
+            address = node
+            itr = itr.next
+            if itr == None:
+                self.head = node
+
+        return self
+
+    def checkPalindrome(self):
+
+        ## let's Reverse the LinkedList First & store the reversed linkedlist in a new linkedlist
+        revll = Linkedlist()
+
+        itr = self.head
+
+        rev = revll.reverseLinkedListv2(itr)
+
+        itr2 = rev.head
+
+        ''' Now we have the reversed linkedlist. 
+        Let's now check if the linkedlist is palindrom or not by comparing the original
+        and the reversed one'''
+
+        palindromeChecker = True
+        while itr and itr2:
+            if itr.data != itr2.data:
+                palindromeChecker = False
+                break
+            itr = itr.next
+            itr2 = itr2.next
+
+        if palindromeChecker:
+            print('Palindrome')
+        else:
+            print('Not palindrome')
+            
 
     def print_ll(self):
         itr = self.head
@@ -87,23 +127,23 @@ class Linkedlist:
 if __name__ == '__main__':
     ll = Linkedlist()
 
-    ll.add_elements_beginning(124)
-    ll.add_elements_beginning(124)
-    ll.add_elements_beginning(121)
-    ll.add_elements_beginning(121)
-    ll.add_elements_beginning(118)
-    ll.add_elements_beginning(118)
-    ll.add_elements_beginning(117)
-    ll.add_elements_beginning(117)
+    # ll.add_elements_beginning(124)
+    # ll.add_elements_beginning(124)
+    # ll.add_elements_beginning(121)
+    # ll.add_elements_beginning(121)
+    # ll.add_elements_beginning(118)
+    # ll.add_elements_beginning(118)
+    # ll.add_elements_beginning(117)
+    # ll.add_elements_beginning(117)
 
-    print('Old LinkedList')
-    ll.print_ll()
+    # print('Old LinkedList')
+    # ll.print_ll()
 
-    ll = ll.reverseLinkedList()
+    # ll = ll.reverseLinkedList()
 
-    print()
-    print('New LinkedList')
-    ll.print_ll()
+    # print()
+    # print('New LinkedList')
+    # ll.print_ll()
 
     # print('before removing the duplicate')
     # ll.print_ll()
@@ -112,3 +152,13 @@ if __name__ == '__main__':
     # ll.print_ll()
 
     # ll.checkCircularity()
+
+    ll.add_elements_beginning(1)
+    ll.add_elements_beginning(2)
+    ll.add_elements_beginning(118)
+    ll.add_elements_beginning(2)
+    ll.add_elements_beginning(1)
+
+    # ll.print_ll()
+
+    ll.checkPalindrome()
